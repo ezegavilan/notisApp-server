@@ -16,6 +16,9 @@ public class SignupRequest {
     @NotNull(message = "El nombre de usuario es obligatorio.")
     private String username;
 
+    @NotNull(message = "El email del usuario es obligatorio")
+    private String email;
+
     @NotNull(message = "La contraseña es obligatoria.")
     private String password;
 

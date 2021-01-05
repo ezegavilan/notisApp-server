@@ -12,3 +12,9 @@ spring:
       hibernate:
         dialect: org.hibernate.dialect.MySQL8Dialect
     show-sql: true
+
+  mail:
+    host: smtp.mailtrap.io
+    port: 2525
+    username: eb1eece6b19a9c
+    password: ed814f343a2257

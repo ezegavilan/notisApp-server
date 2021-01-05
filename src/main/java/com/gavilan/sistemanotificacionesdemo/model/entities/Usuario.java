@@ -23,7 +23,12 @@ public class Usuario implements Serializable {
     @Id
     private String username;
 
+    @Column(unique = true)
+    private String email;
+
     private String password;
+
+    private boolean enabled;
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "fecha_creacion")
