@@ -1,4 +1,4 @@
-package com.gavilan.sistemanotificacionesdemo.models.entities;
+package com.gavilan.sistemanotificacionesdemo.model.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;

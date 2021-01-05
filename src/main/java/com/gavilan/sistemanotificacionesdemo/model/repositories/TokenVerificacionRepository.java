@@ -1,6 +1,6 @@
-package com.gavilan.sistemanotificacionesdemo.models.repositories;
+package com.gavilan.sistemanotificacionesdemo.model.repositories;
 
-import com.gavilan.sistemanotificacionesdemo.models.entities.TokenVerificacion;
+import com.gavilan.sistemanotificacionesdemo.model.entities.TokenVerificacion;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

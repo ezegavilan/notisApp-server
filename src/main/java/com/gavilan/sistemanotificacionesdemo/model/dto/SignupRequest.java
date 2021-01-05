@@ -1,4 +1,4 @@
-package com.gavilan.sistemanotificacionesdemo.models.dto;
+package com.gavilan.sistemanotificacionesdemo.model.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

@@ -1,4 +1,4 @@
-package com.gavilan.sistemanotificacionesdemo.models.entities;
+package com.gavilan.sistemanotificacionesdemo.model.entities;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,12 +9,12 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
+@Table(name = "roles")
 @Data
-@Table(name = "token_verificacion")
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class TokenVerificacion implements Serializable {
+public class Rol implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -22,9 +22,5 @@ public class TokenVerificacion implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String token;
-
-    @OneToOne(fetch = FetchType.LAZY)
-    private Usuario usuario;
-
+    private String nombre;
 }
