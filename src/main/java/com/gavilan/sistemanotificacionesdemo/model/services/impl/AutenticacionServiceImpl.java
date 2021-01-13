@@ -10,15 +10,18 @@ import com.gavilan.sistemanotificacionesdemo.model.entities.Usuario;
 import com.gavilan.sistemanotificacionesdemo.model.exceptions.AutenticacionExcepcion;
 import com.gavilan.sistemanotificacionesdemo.model.repositories.RolRepository;
 import com.gavilan.sistemanotificacionesdemo.model.repositories.UsuarioRepository;
+import com.gavilan.sistemanotificacionesdemo.model.security.JwtProvider;
 import com.gavilan.sistemanotificacionesdemo.model.services.AutenticacionService;
 import com.gavilan.sistemanotificacionesdemo.model.services.MailService;
 import com.gavilan.sistemanotificacionesdemo.model.services.TokenVerificacionService;
 import lombok.AllArgsConstructor;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -37,6 +40,7 @@ public class AutenticacionServiceImpl implements AutenticacionService {
 
     private final TokenVerificacionService tokenVerificacionService;
     private final MailService mailService;
+    private final JwtProvider jwtProvider;
 
     @Transactional
     @Override
@@ -109,17 +113,28 @@ public class AutenticacionServiceImpl implements AutenticacionService {
                 new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
 
         SecurityContextHolder.getContext().setAuthentication(authenticate);
-        String jwt;
-        return null;
+        String jwt = this.jwtProvider.generarToken(authenticate);
+
+        return AuthResponse.builder()
+                .authToken(jwt)
+                .username(usuario.getUsername())
+                .rol(usuario.getRol().getNombre())
+                .expiraEn(new Date(new Date().getTime() + this.jwtProvider.getExpirationInMillis()))
+                .build();
     }
 
+    @Transactional(readOnly = true)
     @Override
     public Usuario getUsuarioActual() {
-        return null;
+        User principal = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        return this.usuarioRepository.findById(principal.getUsername())
+                .orElseThrow(() -> new AutenticacionExcepcion("No existe username"));
     }
 
     @Override
     public boolean estaLogueado() {
-        return false;
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        return !(authentication instanceof AnonymousAuthenticationToken) && authentication.isAuthenticated();
     }
 }
