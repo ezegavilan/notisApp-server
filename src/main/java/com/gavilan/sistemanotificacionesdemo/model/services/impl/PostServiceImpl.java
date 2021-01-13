@@ -1,4 +1,4 @@
-package com.gavilan.sistemanotificacionesdemo.models.services.impl;
+package com.gavilan.sistemanotificacionesdemo.model.services.impl;
 
 import com.gavilan.sistemanotificacionesdemo.model.entities.Post;
 import com.gavilan.sistemanotificacionesdemo.model.entities.Usuario;
