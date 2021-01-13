@@ -118,6 +118,7 @@ public class AutenticacionServiceImpl implements AutenticacionService {
         return AuthResponse.builder()
                 .authToken(jwt)
                 .username(usuario.getUsername())
+                .email(usuario.getEmail())
                 .rol(usuario.getRol().getNombre())
                 .expiraEn(new Date(new Date().getTime() + this.jwtProvider.getExpirationInMillis()))
                 .build();

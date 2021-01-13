@@ -15,6 +15,7 @@ public class AuthResponse {
 
     private String authToken;
     private String username;
+    private String email;
     private String rol;
     private Date expiraEn;
 }
