@@ -6,6 +6,7 @@ import com.gavilan.sistemanotificacionesdemo.model.exceptions.NotisException;
 import com.gavilan.sistemanotificacionesdemo.model.repositories.PostRepository;
 import com.gavilan.sistemanotificacionesdemo.model.repositories.UsuarioRepository;
 import com.gavilan.sistemanotificacionesdemo.model.services.AutenticacionService;
+import com.gavilan.sistemanotificacionesdemo.model.services.NotificacionService;
 import com.gavilan.sistemanotificacionesdemo.model.services.PostService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -21,6 +22,7 @@ public class PostServiceImpl implements PostService {
     private final PostRepository postRepository;
     private final UsuarioRepository usuarioRepository;
     private final AutenticacionService autenticacionService;
+    private final NotificacionService notificacionService;
 
     @Transactional
     @Override
@@ -33,6 +35,7 @@ public class PostServiceImpl implements PostService {
                 .creadoEn(new Date())
                 .usuario(usuarioActual).build();
 
+        this.notificacionService.enviarNotificacion(nuevoPost);
         return this.postRepository.save(nuevoPost);
     }
 

@@ -97,6 +97,12 @@
             <artifactId>jjwt-jackson</artifactId>
             <version>0.10.5</version>
         </dependency>
+        <dependency>
+            <groupId>com.konghq</groupId>
+            <artifactId>unirest-java</artifactId>
+            <version>3.11.09</version>
+            <scope>provided</scope>
+        </dependency>
     </dependencies>
 
     <build>

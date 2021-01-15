@@ -1,8 +1,8 @@
 spring:
   datasource:
     url: jdbc:mysql://localhost:3306/notis_app?serverTimezone=America/Argentina/Cordoba
-    username: root
-    password: 1677613325
+    username: dev
+    password: userdev1295
     driver-class-name: com.mysql.cj.jdbc.Driver
 
   jpa:
