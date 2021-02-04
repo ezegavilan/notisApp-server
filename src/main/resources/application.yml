@@ -4,10 +4,11 @@ spring:
     username: dev
     password: userdev1295
     driver-class-name: com.mysql.cj.jdbc.Driver
+    initialization-mode: always
 
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: create-drop
     properties:
       hibernate:
         dialect: org.hibernate.dialect.MySQL8Dialect
