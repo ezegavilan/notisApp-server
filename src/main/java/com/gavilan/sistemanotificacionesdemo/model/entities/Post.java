@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -21,8 +22,11 @@ public class Post implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idPost;
+    @GenericGenerator(name = "post_custom_sequence",
+            strategy = "com.gavilan.sistemanotificacionesdemo.model.entities.idgenerator.PostIdGenerator")
+    @GeneratedValue(generator = "post_custom_sequence")
+    @Column(name = "post_id")
+    private String postId;
     private String nombrePost;
     private String descripcion;
     private Date creadoEn;
